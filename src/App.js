@@ -7,6 +7,7 @@ import SingleProduct from './pages/SingleProduct'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Error from './pages/Error'
+import ProtectedRoute from './pages/ProtectedRoute' // importing a protected route component to wrap dashboard
 import { useState } from 'react'
 
 function App() {
@@ -39,7 +40,13 @@ function App() {
 
         {/* Sending 'setUser' into Login and 'user' to into Dashboard as props */}
         <Route path="login" element={<Login setUser={setUser} />} />
-        <Route path="dashboard" element={<Dashboard user={user} />} />
+        {/* Protecting the dashboard route with the ProtectedRoute component */}
+          <Route path="dashboard" 
+                element={
+                <ProtectedRoute user={user}>
+                  <Dashboard user={user} />
+                </ProtectedRoute>
+          } />
 
         <Route path="*" element={<Error />} />
       </Route>
