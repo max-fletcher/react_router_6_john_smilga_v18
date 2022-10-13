@@ -1,11 +1,27 @@
 import { useState } from 'react';
-const Login = () => {
+import { useNavigate } from 'react-router-dom'
+
+//setUser is in props sent from App.js
+const Login = (props) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+
+  // useNavigate hook is used to programatically navigate to any defined/existing route.
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(name, email);
+
+    if(!name || !email){
+      return
+    }
+
+    //setUser is in props sent from App.js
+    props.setUser({name, email})
+    // navigate to the dashboard page after login
+    navigate('/dashboard')
+
   };
 
   return (
