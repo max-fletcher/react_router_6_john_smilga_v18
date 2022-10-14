@@ -1,5 +1,6 @@
 import {Routes, Route} from 'react-router-dom'
-import SharedLayout from './layouts/SharedLayout'
+import SharedLayout from './layouts/SharedLayout' // import global layout
+import SharedProductLayout from './layouts/SharedProductLayout' // import products page layout
 import Home from './pages/Home'
 import About from './pages/About'
 import Products from './pages/Products'
@@ -22,7 +23,7 @@ function App() {
     <Routes>
       <Route path='/' element={<SharedLayout />}>
         <Route index element={<Home />} />
-      {/* <Route path="/" element={<SharedLayout />}>
+        {/* <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} /> */}
         <Route path="about" element={<About />} />
 
@@ -32,7 +33,7 @@ function App() {
         {/* <Route path="products/:productId" element={<SingleProduct />} /> */}
 
         {/* WITH NESTING */}
-        <Route path="products">
+        <Route path="products" element={<SharedProductLayout />}>
           <Route index element={<Products />} />
           {/* Dynamic route. Will use the useParams hook from react-router-dom inside the 'SingleProduct' component */}
           <Route path=":productId" element={<SingleProduct />} />
@@ -43,10 +44,11 @@ function App() {
         {/* Protecting the dashboard route with the ProtectedRoute component */}
           <Route path="dashboard" 
                 element={
-                <ProtectedRoute user={user}>
-                  <Dashboard user={user} />
-                </ProtectedRoute>
-          } />
+                  <ProtectedRoute user={user}>
+                    <Dashboard user={user} />
+                  </ProtectedRoute>
+                }
+          />
 
         <Route path="*" element={<Error />} />
       </Route>
