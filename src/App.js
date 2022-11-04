@@ -42,7 +42,7 @@ function App() {
         {/* Sending 'setUser' into Login and 'user' to into Dashboard as props */}
         <Route path="login" element={<Login setUser={setUser} />} />
         {/* Protecting the dashboard route with the ProtectedRoute component */}
-          <Route path="dashboard" 
+          <Route path="dashboard"
                 element={
                   <ProtectedRoute user={user}>
                     <Dashboard user={user} />

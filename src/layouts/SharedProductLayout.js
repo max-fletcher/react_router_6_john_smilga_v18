@@ -1,6 +1,6 @@
 import {Outlet} from 'react-router-dom'
 
-const Home = () => {
+const SharedProductLayout = () => {
    return (
       <>
          <h2> Products </h2>
@@ -9,4 +9,4 @@ const Home = () => {
    );
 };
 
-export default Home;
+export default SharedProductLayout;
